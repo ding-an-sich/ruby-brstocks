@@ -1,6 +1,7 @@
 require 'mechanize'
 require 'timeout'
 require 'io/console'
+require 'bigdecimal'
 
 # Get username and password
 puts 'username'
@@ -33,5 +34,13 @@ puts "\n\n"
 positions.each do |position|
   puts position.text
 end
+
+# Format data and convert to BigDecimal
+total_bonds = positions[1].text.delete('^0-9,')
+total_bonds.gsub!(',', '.')
+total_bonds = BigDecimal(total_bonds)
+total_stocks = positions[3].text.delete('^0-9,')
+total_stocks.gsub!(',', '.')
+total_stocks = BigDecimal(total_stocks)
 
 puts "\nFinished!"
