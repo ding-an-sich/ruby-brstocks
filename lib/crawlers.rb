@@ -26,5 +26,3 @@ end
 
 agent = MechCrawler.new
 
-binding.pry
-puts '++++++++'
