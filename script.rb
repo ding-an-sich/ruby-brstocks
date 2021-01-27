@@ -2,22 +2,17 @@ require 'mechanize'
 require 'timeout'
 require 'bigdecimal'
 
-# Get username and password
-puts 'username'
-# Fill here
+# Fill username, password and initialize agent
 username = 
 pass = 
 puts 'Logging in...'
 
-# Initialize Mechanize agent for crawling and populate SSL certs
 agent = Mechanize.new
 agent.user_agent_alias = 'Mac Safari'
 cert_store = OpenSSL::X509::Store.new
 cert_store.add_file 'certs/ceiapp-b3-com-br.pem'
 cert_store.add_file 'certs/ceiapp-b3-com-br-chain.pem'
 agent.cert_store = cert_store
-ciphers = ["AES256-SHA:AES128-SHA:DES-CBC3-SHA"]
-agent.agent.http.ciphers = ciphers
 
 # Submits login form
 cei = agent.get 'https://ceiapp.b3.com.br/CEI_Responsivo/login.aspx'
